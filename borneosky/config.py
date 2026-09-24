@@ -49,3 +49,23 @@ def user_agent() -> str:
     setting, not code, so it stays out of the public repo."""
     contact = os.environ.get("CONTACT_EMAIL", "").strip()
     return f"BorneoSky/0.1 (+https://borneosky.com{'; ' + contact if contact else ''})"
+
+
+def annotate(level: str, message: str) -> None:
+    """Show a message as a GitHub Actions annotation (no-op elsewhere).
+    Never pass secret values here."""
+    if os.environ.get("GITHUB_ACTIONS"):
+        print(f"::{level}::{message}".replace("\n", " "), flush=True)
+
+
+def run_main(fn) -> None:
+    """Run a script's main(), surfacing any failure as an Actions error."""
+    try:
+        fn()
+    except SystemExit as e:
+        if e.code not in (None, 0):
+            annotate("error", str(e.code)[:300])
+        raise
+    except Exception as e:
+        annotate("error", f"{type(e).__name__}: {str(e)[:250]}")
+        raise

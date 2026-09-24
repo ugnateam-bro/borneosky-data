@@ -8,7 +8,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from borneosky.config import LOCAL_ENV  # noqa: E402  (importing loads .env locally)
+from borneosky.config import LOCAL_ENV, annotate  # noqa: E402  (importing loads .env locally)
 
 REQUIRED = ["R2_ACCOUNT_ID", "R2_ACCESS_KEY_ID", "R2_SECRET_ACCESS_KEY",
             "R2_BUCKET", "FIRMS_MAP_KEY", "ADS_API_KEY"]
@@ -23,11 +23,16 @@ def main() -> None:
         val = raw.strip()
         if not val:
             print(f"  {name:22} MISSING or empty" + ("" if name in REQUIRED else " (optional)"))
+            if name in REQUIRED:
+                annotate("error", f"Secret {name} is missing or empty")
             bad = bad or name in REQUIRED
         else:
             note = " (has stray whitespace, stripped)" if raw != val else ""
             quoted = " (wrapped in quotes — remove them)" if val[0] in "\"'" else ""
             print(f"  {name:22} set, {len(val)} chars{note}{quoted}")
+            annotate("notice", f"{name}: {len(val)} chars{note}{quoted}")
+            if quoted:
+                annotate("error", f"Secret {name} is wrapped in quotes")
             bad = bad or bool(quoted)
     if bad:
         sys.exit("Fix the secrets above (repo Settings > Secrets and variables > Actions).")
@@ -42,10 +47,15 @@ def main() -> None:
         r2.client().delete_object(Bucket=r2.bucket(), Key=key)
     except ClientError as e:
         err = e.response.get("Error", {})
-        sys.exit(f"R2 rejected the request: {err.get('Code')} — {err.get('Message', '')[:120]}")
+        msg = f"R2 rejected the request: {err.get('Code')} — {err.get('Message', '')[:120]}"
+        annotate("error", msg)
+        sys.exit(msg)
     except BotoCoreError as e:
-        sys.exit(f"R2 connection problem: {type(e).__name__}")
+        msg = f"R2 connection problem: {type(e).__name__}"
+        annotate("error", msg)
+        sys.exit(msg)
     print("  R2 write/delete ok")
+    annotate("notice", "Preflight passed: all settings present, R2 write/delete ok")
 
 
 if __name__ == "__main__":

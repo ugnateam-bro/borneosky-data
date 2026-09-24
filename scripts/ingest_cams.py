@@ -69,4 +69,5 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    from borneosky.config import run_main
+    run_main(main)
