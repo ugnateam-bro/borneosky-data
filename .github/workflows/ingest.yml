@@ -2,7 +2,7 @@ name: Ingest
 
 on:
   schedule:
-    - cron: "17 * * * *"   # hourly, off the top of the hour when GitHub is busiest
+    - cron: "23 * * * *"   # hourly, off the top of the hour when GitHub is busiest
   workflow_dispatch:
 
 # One run at a time; a slow run is not cancelled, the next one waits.
