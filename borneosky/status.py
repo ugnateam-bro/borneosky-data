@@ -15,6 +15,8 @@ source. The site's About page shows it, and an uptime monitor can watch it.
     }
   }
 
+Sources listed in RETIRED_SOURCES are dropped from the file whenever a source records.
+
 Recording is best effort: it must never make an ingest fail.
 """
 
@@ -24,9 +26,14 @@ from datetime import datetime, timezone
 META_KEY = "meta.json"
 
 # How stale a source may get before the site calls it delayed.
-STALE_AFTER_MINUTES = {"firms": 180, "met": 180, "cams": 1800, "prices": 2880}
+STALE_AFTER_MINUTES = {"firms": 180, "met": 180, "cams": 1800}
 LABELS = {"firms": "NASA FIRMS hotspots", "met": "MET Norway weather forecast",
-          "cams": "Copernicus CAMS smoke forecast", "prices": "Fuel and commodity prices"}
+          "cams": "Copernicus CAMS smoke forecast"}
+
+# Sources that no longer run. Their last entry would otherwise sit in meta.json for
+# ever and the About page would call them delayed. Revive a source by removing it here.
+# "prices" was retired on 2026-09-24: see docs/retired/prices.md.
+RETIRED_SOURCES = ("prices",)
 
 _detail: dict = {}
 _soft_error: str | None = None
@@ -59,6 +66,8 @@ def record(source: str, ok: bool, error: str | None = None) -> None:
         now = _iso()
         meta = r2.get_json(META_KEY) or {}
         sources = meta.setdefault("sources", {})
+        for gone in RETIRED_SOURCES:
+            sources.pop(gone, None)
         prev = sources.get(source, {})
         sources[source] = {
             "label": LABELS.get(source, source),

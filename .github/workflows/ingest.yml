@@ -56,10 +56,6 @@ jobs:
         continue-on-error: true
         run: python scripts/ingest_cams.py
 
-      - id: prices
-        continue-on-error: true
-        run: python scripts/ingest_prices.py
-
       # GitHub disables scheduled workflows after 60 days without repo
       # activity. One commit per day keeps the schedule alive.
       - name: Keep schedule alive
@@ -75,7 +71,7 @@ jobs:
           fi
 
       - name: Fail the run if any source failed
-        if: steps.firms.outcome == 'failure' || steps.met.outcome == 'failure' || steps.cams.outcome == 'failure' || steps.prices.outcome == 'failure'
+        if: steps.firms.outcome == 'failure' || steps.met.outcome == 'failure' || steps.cams.outcome == 'failure'
         run: |
-          echo "firms=${{ steps.firms.outcome }} met=${{ steps.met.outcome }} cams=${{ steps.cams.outcome }} prices=${{ steps.prices.outcome }}"
+          echo "firms=${{ steps.firms.outcome }} met=${{ steps.met.outcome }} cams=${{ steps.cams.outcome }}"
           exit 1
