@@ -27,14 +27,18 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
           cache: pip
 
       - run: pip install -r requirements.txt
+
+      # Names and lengths only, never values. Stops early with a clear
+      # message if a secret is missing or R2 rejects the keys.
+      - run: python scripts/preflight.py
 
       # Each source runs even if an earlier one failed. A failed source
       # uploads nothing, so R2 keeps its last good file.
