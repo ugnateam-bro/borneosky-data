@@ -25,6 +25,8 @@ from .config import user_agent
 
 API = "https://api.met.no/weatherapi/locationforecast/2.0/compact"
 META_KEY = "forecast/_meta.json"
+SUMMARY_KEY = "forecast/summary.json"
+BRIEF_HOURS = 12
 HOURLY_HOURS = 48
 REQUEST_GAP_S = 0.2  # well under MET's 20 req/s ceiling
 
@@ -194,6 +196,17 @@ def build_town(town: dict, data: dict, headers, now: datetime) -> dict:
     }
 
 
+def brief(doc: dict) -> dict:
+    """The small slice of a town's forecast the map needs: the next 12 hours
+    (temperature, rain, wind, symbol) and the first two local days. The first
+    day is usually partial (only the hours left today); the site says so."""
+    hours = [{k: h[k] for k in ("t", "temp", "rain", "wind", "wind_dir", "symbol")}
+             for h in doc["hourly"][:BRIEF_HOURS]]
+    days = [{k: d[k] for k in ("date", "tmin", "tmax", "rain", "symbol", "partial")}
+            for d in doc["daily"][:2]]
+    return {"model_updated_utc": doc["model_updated_utc"], "hourly": hours, "days": days}
+
+
 def run(put_json, get_json, *, force: bool = False, log=print) -> dict:
     """Fetch and upload every town that is due. Returns a status dict."""
     now = datetime.now(timezone.utc)
@@ -214,8 +227,11 @@ def run(put_json, get_json, *, force: bool = False, log=print) -> dict:
 
         try:
             status, data, headers = fetch(session, town, prev.get("last_modified"))
+            town_brief = prev.get("brief")
             if status == 200:
-                put_json(town["forecast_file"], build_town(town, data, headers, now))
+                doc = build_town(town, data, headers, now)
+                put_json(town["forecast_file"], doc)
+                town_brief = brief(doc)
                 result["updated"].append(slug)
             else:
                 result["not_modified"].append(slug)
@@ -229,9 +245,17 @@ def run(put_json, get_json, *, force: bool = False, log=print) -> dict:
             "expires": headers.get("Expires")
                        or format_datetime(now + timedelta(minutes=30), usegmt=True),
             "checked_utc": _iso(now),
+            "brief": town_brief,
         }
         time.sleep(REQUEST_GAP_S)
 
     meta["generated_utc"] = _iso(now)
     put_json(META_KEY, meta)
+    # One small file with every town's next hours, for the map and overview.
+    put_json(SUMMARY_KEY, gzipped=True, obj={
+        "generated_utc": _iso(now),
+        "label": LABEL,
+        "attribution": ATTRIBUTION,
+        "towns": {slug: st["brief"] for slug, st in state.items() if st.get("brief")},
+    })
     return result

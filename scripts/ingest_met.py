@@ -30,7 +30,7 @@ def main() -> None:
     args = ap.parse_args()
 
     if args.dry_run:
-        def put_json(key, obj):
+        def put_json(key, obj, gzipped=False):
             path = OUT / key
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(json.dumps(obj, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -42,9 +42,9 @@ def main() -> None:
 
         from borneosky import r2
 
-        def put_json(key, obj):
+        def put_json(key, obj, gzipped=False):
             try:
-                r2.put_json(key, obj, cache_seconds=900)
+                r2.put_json(key, obj, cache_seconds=900, gzipped=gzipped)
             except (ClientError, BotoCoreError) as e:
                 sys.exit(f"R2 upload of {key} failed: {type(e).__name__}. Check the R2 keys.")
 
