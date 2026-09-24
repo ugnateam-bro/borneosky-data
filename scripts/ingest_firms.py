@@ -17,7 +17,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from borneosky import firms  # noqa: E402
+from borneosky import firms, status  # noqa: E402
 
 # name: (R2 key, content type, pre-gzip)
 KEYS = {
@@ -43,6 +43,7 @@ def main() -> None:
     print(f"  {geojson['count']} detections on Borneo in last "
           f"{geojson['window_hours']} h ({geojson['dropped_off_island']} off-island dropped)")
 
+    status.detail(detections=geojson["count"], satellites_ok=sum(1 for s in geojson["sources"].values() if s["ok"]))
     outputs = {"geojson": geojson, "summary": summary}
 
     if args.dry_run:
@@ -75,4 +76,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     from borneosky.config import run_main
-    run_main(main)
+    run_main(main, source="firms")

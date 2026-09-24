@@ -58,14 +58,26 @@ def annotate(level: str, message: str) -> None:
         print(f"::{level}::{message}".replace("\n", " "), flush=True)
 
 
-def run_main(fn) -> None:
-    """Run a script's main(), surfacing any failure as an Actions error."""
+def run_main(fn, source: str | None = None) -> None:
+    """Run a script's main(), surfacing any failure as an Actions error and,
+    when `source` is given, recording the outcome in meta.json."""
+    from . import status
+
     try:
         fn()
     except SystemExit as e:
         if e.code not in (None, 0):
             annotate("error", str(e.code)[:300])
+            if source:
+                status.record(source, False, str(e.code))
+        elif source:
+            status.record(source, True)
         raise
     except Exception as e:
         annotate("error", f"{type(e).__name__}: {str(e)[:250]}")
+        if source:
+            status.record(source, False, f"{type(e).__name__}: {str(e)[:150]}")
         raise
+    else:
+        if source:
+            status.record(source, True)

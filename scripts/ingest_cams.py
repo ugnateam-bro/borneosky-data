@@ -19,7 +19,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from borneosky import cams  # noqa: E402
+from borneosky import cams, status  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent / "out"
 
@@ -57,6 +57,9 @@ def main() -> None:
 
     res = cams.run(put_json, get_json, force=args.force or args.dry_run)
 
+    status.detail(status=res["status"], run_utc=res.get("run_utc"))
+    if res["status"] == "failed":
+        status.soft_fail(res["error"])
     if res["status"] == "up_to_date":
         print(f"  already have run {res['run_utc']}, nothing to do")
     elif res["status"] == "updated":
@@ -70,4 +73,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     from borneosky.config import run_main
-    run_main(main)
+    run_main(main, source="cams")

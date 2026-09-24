@@ -17,7 +17,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from borneosky import prices  # noqa: E402
+from borneosky import prices, status  # noqa: E402
 from borneosky.config import run_main  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent / "out"
@@ -46,6 +46,9 @@ def main() -> None:
         get_json = r2.get_json
 
     res = prices.run(put_json, get_json, force=args.force or args.dry_run)
+    status.detail(status=res["status"], updated=len(res.get("updated", [])), failed=len(res.get("failed", {})))
+    if res["status"] != "not_due" and res.get("failed"):
+        status.soft_fail("; ".join(f"{k}: {v}" for k, v in res["failed"].items()))
     if res["status"] == "not_due":
         print(f"  checked at {res['checked_utc']}, not due yet")
         return
@@ -58,4 +61,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    run_main(main)
+    run_main(main, source="prices")

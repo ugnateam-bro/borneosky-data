@@ -18,7 +18,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from borneosky import geo, met  # noqa: E402
+from borneosky import geo, met, status  # noqa: E402
 
 OUT = Path(__file__).resolve().parent.parent / "out"
 
@@ -52,6 +52,7 @@ def main() -> None:
 
     res = met.run(put_json, get_json, force=args.force or args.dry_run)
 
+    status.detail(updated=len(res["updated"]), not_modified=len(res["not_modified"]), not_due=len(res["not_due"]), failed=len(res["failed"]))
     print(f"  updated {len(res['updated'])}, not modified {len(res['not_modified'])}, "
           f"not yet due {len(res['not_due'])}, failed {len(res['failed'])}")
     for slug, err in res["failed"].items():
@@ -63,4 +64,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     from borneosky.config import run_main
-    run_main(main)
+    run_main(main, source="met")
