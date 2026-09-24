@@ -1,4 +1,5 @@
-"""Economic data → R2. Only openly licensed sources (CC BY 4.0):
+"""Economic data → R2. Only openly licensed sources (CC BY 4.0), and only
+prices the public actually checks (fuel, palm oil, rubber):
 
   prices/fuel_my.json       Malaysian retail fuel prices, weekly
                             (data.gov.my, Ministry of Finance)
@@ -44,12 +45,6 @@ WB_SERIES = [
     ("palm_kernel_oil", "Palm kernel oil", "Palm kernel oil", "Plantation"),
     ("rubber_rss3", "Rubber, RSS3", "Rubber, RSS3", "Plantation"),
     ("rubber_tsr20", "Rubber, TSR20", "Rubber, TSR20", "Plantation"),
-    ("logs_my", "Logs, Malaysian", "Logs, Malaysian", "Timber"),
-    ("sawnwood_my", "Sawnwood, Malaysian", "Sawnwood, Malaysian", "Timber"),
-    ("brent", "Crude oil, Brent", "Crude oil, Brent", "Energy"),
-    ("coal_au", "Coal, Australian", "Coal, Australian", "Energy"),
-    ("lng_japan", "Liquefied natural gas, Japan", "LNG, Japan", "Energy"),
-    ("rice_thai5", "Rice, Thai 5%", "Rice, Thai 5%", "Food"),
 ]
 WB_HISTORY_MONTHS = 24
 WB_ATTRIBUTION = ("Commodity prices: The World Bank, Commodity Price Data "
