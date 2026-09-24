@@ -4,3 +4,4 @@ shapely>=2.0
 numpy>=2.0
 netCDF4>=1.7
 cdsapi>=0.7.7
+openpyxl>=3.1
