@@ -42,6 +42,8 @@ jobs:
 
       # Each source runs even if an earlier one failed. A failed source
       # uploads nothing, so R2 keeps its last good file.
+      - run: python scripts/publish_static.py
+
       - id: firms
         continue-on-error: true
         run: python scripts/ingest_firms.py

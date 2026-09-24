@@ -180,7 +180,10 @@ def build(now: datetime | None = None) -> tuple[dict, dict]:
 
 def summarise(features: list[dict], meta: dict, now: datetime) -> dict:
     last24 = now - timedelta(hours=24)
-    by_town = {t["slug"]: {"h24": 0, "h48": 0, "nearest_km": None}
+    # "within" counts use each detection's true distance to the town, not just
+    # the town it was tagged to; nearest_km is the closest detection of any kind.
+    by_town = {t["slug"]: {"h24": 0, "h48": 0, "nearest_km": None,
+                           "within_100km_h24": 0, "within_200km_h24": 0}
                for t in geo.towns()}
     by_region: dict[str, dict] = {}
 
@@ -192,8 +195,16 @@ def summarise(features: list[dict], meta: dict, now: datetime) -> dict:
         t = by_town[p["town"]]
         t["h48"] += 1
         t["h24"] += recent
-        if t["nearest_km"] is None or p["km"] < t["nearest_km"]:
-            t["nearest_km"] = p["km"]
+        lon, lat = f["geometry"]["coordinates"]
+        for town in geo.towns():
+            km = geo.haversine_km(lat, lon, town["point"]["lat"], town["point"]["lon"])
+            row = by_town[town["slug"]]
+            if row["nearest_km"] is None or km < row["nearest_km"]:
+                row["nearest_km"] = round(km, 1)
+            if recent and km <= 200:
+                row["within_200km_h24"] += 1
+                if km <= 100:
+                    row["within_100km_h24"] += 1
 
         r = by_region.setdefault(p["r"], {"country_code": geo.region_country(p["r"]),
                                           "admin1": p["r"], "h24": 0, "h48": 0})
