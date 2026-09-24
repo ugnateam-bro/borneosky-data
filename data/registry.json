@@ -1,0 +1,936 @@
+{
+  "generated_utc": "2026-09-23T14:06:42+00:00",
+  "bbox": [
+    108.5,
+    -4.5,
+    119.5,
+    7.5
+  ],
+  "count": 44,
+  "locations": [
+    {
+      "slug": "kuala-belait",
+      "name": "Kuala Belait",
+      "country_code": "BN",
+      "country": "Brunei Darussalam",
+      "admin1": "Belait",
+      "point": {
+        "lat": 4.5824,
+        "lon": 114.193
+      },
+      "timezone": "Asia/Brunei",
+      "utc_offset_hours": 8.0,
+      "index": "PSI",
+      "path": "/bn/belait/kuala-belait",
+      "forecast_file": "forecast/districts/kuala-belait.json",
+      "official_source": {
+        "name": "Department of Environment, Parks and Recreation, Brunei",
+        "url": "https://www.env.gov.bn"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "seria",
+      "name": "Seria",
+      "country_code": "BN",
+      "country": "Brunei Darussalam",
+      "admin1": "Belait",
+      "point": {
+        "lat": 4.61,
+        "lon": 114.32
+      },
+      "timezone": "Asia/Brunei",
+      "utc_offset_hours": 8.0,
+      "index": "PSI",
+      "path": "/bn/belait/seria",
+      "forecast_file": "forecast/districts/seria.json",
+      "official_source": {
+        "name": "Department of Environment, Parks and Recreation, Brunei",
+        "url": "https://www.env.gov.bn"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "bandar-seri-begawan",
+      "name": "Bandar Seri Begawan",
+      "country_code": "BN",
+      "country": "Brunei Darussalam",
+      "admin1": "Brunei-Muara",
+      "point": {
+        "lat": 4.9031,
+        "lon": 114.9398
+      },
+      "timezone": "Asia/Brunei",
+      "utc_offset_hours": 8.0,
+      "index": "PSI",
+      "path": "/bn/brunei-muara/bandar-seri-begawan",
+      "forecast_file": "forecast/districts/bandar-seri-begawan.json",
+      "official_source": {
+        "name": "Department of Environment, Parks and Recreation, Brunei",
+        "url": "https://www.env.gov.bn"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "bangar",
+      "name": "Bangar",
+      "country_code": "BN",
+      "country": "Brunei Darussalam",
+      "admin1": "Temburong",
+      "point": {
+        "lat": 4.708,
+        "lon": 115.073
+      },
+      "timezone": "Asia/Brunei",
+      "utc_offset_hours": 8.0,
+      "index": "PSI",
+      "path": "/bn/temburong/bangar",
+      "forecast_file": "forecast/districts/bangar.json",
+      "official_source": {
+        "name": "Department of Environment, Parks and Recreation, Brunei",
+        "url": "https://www.env.gov.bn"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "tutong",
+      "name": "Tutong",
+      "country_code": "BN",
+      "country": "Brunei Darussalam",
+      "admin1": "Tutong",
+      "point": {
+        "lat": 4.8,
+        "lon": 114.65
+      },
+      "timezone": "Asia/Brunei",
+      "utc_offset_hours": 8.0,
+      "index": "PSI",
+      "path": "/bn/tutong/tutong",
+      "forecast_file": "forecast/districts/tutong.json",
+      "official_source": {
+        "name": "Department of Environment, Parks and Recreation, Brunei",
+        "url": "https://www.env.gov.bn"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "ketapang",
+      "name": "Ketapang",
+      "country_code": "ID",
+      "country": "Indonesia",
+      "admin1": "Kalimantan Barat",
+      "point": {
+        "lat": -1.85,
+        "lon": 109.98
+      },
+      "timezone": "Asia/Pontianak",
+      "utc_offset_hours": 7.0,
+      "index": "ISPU",
+      "path": "/id/kalimantan-barat/ketapang",
+      "forecast_file": "forecast/districts/ketapang.json",
+      "official_source": {
+        "name": "KLHK / BMKG, Indonesia",
+        "url": "https://www.bmkg.go.id"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "pontianak",
+      "name": "Pontianak",
+      "country_code": "ID",
+      "country": "Indonesia",
+      "admin1": "Kalimantan Barat",
+      "point": {
+        "lat": -0.0263,
+        "lon": 109.3425
+      },
+      "timezone": "Asia/Pontianak",
+      "utc_offset_hours": 7.0,
+      "index": "ISPU",
+      "path": "/id/kalimantan-barat/pontianak",
+      "forecast_file": "forecast/districts/pontianak.json",
+      "official_source": {
+        "name": "KLHK / BMKG, Indonesia",
+        "url": "https://www.bmkg.go.id"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "singkawang",
+      "name": "Singkawang",
+      "country_code": "ID",
+      "country": "Indonesia",
+      "admin1": "Kalimantan Barat",
+      "point": {
+        "lat": 0.906,
+        "lon": 108.985
+      },
+      "timezone": "Asia/Pontianak",
+      "utc_offset_hours": 7.0,
+      "index": "ISPU",
+      "path": "/id/kalimantan-barat/singkawang",
+      "forecast_file": "forecast/districts/singkawang.json",
+      "official_source": {
+        "name": "KLHK / BMKG, Indonesia",
+        "url": "https://www.bmkg.go.id"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "sintang",
+      "name": "Sintang",
+      "country_code": "ID",
+      "country": "Indonesia",
+      "admin1": "Kalimantan Barat",
+      "point": {
+        "lat": 0.07,
+        "lon": 111.49
+      },
+      "timezone": "Asia/Pontianak",
+      "utc_offset_hours": 7.0,
+      "index": "ISPU",
+      "path": "/id/kalimantan-barat/sintang",
+      "forecast_file": "forecast/districts/sintang.json",
+      "official_source": {
+        "name": "KLHK / BMKG, Indonesia",
+        "url": "https://www.bmkg.go.id"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "banjarbaru",
+      "name": "Banjarbaru",
+      "country_code": "ID",
+      "country": "Indonesia",
+      "admin1": "Kalimantan Selatan",
+      "point": {
+        "lat": -3.442,
+        "lon": 114.83
+      },
+      "timezone": "Asia/Makassar",
+      "utc_offset_hours": 8.0,
+      "index": "ISPU",
+      "path": "/id/kalimantan-selatan/banjarbaru",
+      "forecast_file": "forecast/districts/banjarbaru.json",
+      "official_source": {
+        "name": "KLHK / BMKG, Indonesia",
+        "url": "https://www.bmkg.go.id"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "banjarmasin",
+      "name": "Banjarmasin",
+      "country_code": "ID",
+      "country": "Indonesia",
+      "admin1": "Kalimantan Selatan",
+      "point": {
+        "lat": -3.3194,
+        "lon": 114.5906
+      },
+      "timezone": "Asia/Makassar",
+      "utc_offset_hours": 8.0,
+      "index": "ISPU",
+      "path": "/id/kalimantan-selatan/banjarmasin",
+      "forecast_file": "forecast/districts/banjarmasin.json",
+      "official_source": {
+        "name": "KLHK / BMKG, Indonesia",
+        "url": "https://www.bmkg.go.id"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "kotabaru",
+      "name": "Kotabaru",
+      "country_code": "ID",
+      "country": "Indonesia",
+      "admin1": "Kalimantan Selatan",
+      "point": {
+        "lat": -3.24,
+        "lon": 116.25
+      },
+      "timezone": "Asia/Makassar",
+      "utc_offset_hours": 8.0,
+      "index": "ISPU",
+      "path": "/id/kalimantan-selatan/kotabaru",
+      "forecast_file": "forecast/districts/kotabaru.json",
+      "official_source": {
+        "name": "KLHK / BMKG, Indonesia",
+        "url": "https://www.bmkg.go.id"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "palangka-raya",
+      "name": "Palangka Raya",
+      "country_code": "ID",
+      "country": "Indonesia",
+      "admin1": "Kalimantan Tengah",
+      "point": {
+        "lat": -2.21,
+        "lon": 113.92
+      },
+      "timezone": "Asia/Pontianak",
+      "utc_offset_hours": 7.0,
+      "index": "ISPU",
+      "path": "/id/kalimantan-tengah/palangka-raya",
+      "forecast_file": "forecast/districts/palangka-raya.json",
+      "official_source": {
+        "name": "KLHK / BMKG, Indonesia",
+        "url": "https://www.bmkg.go.id"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "pangkalan-bun",
+      "name": "Pangkalan Bun",
+      "country_code": "ID",
+      "country": "Indonesia",
+      "admin1": "Kalimantan Tengah",
+      "point": {
+        "lat": -2.68,
+        "lon": 111.62
+      },
+      "timezone": "Asia/Pontianak",
+      "utc_offset_hours": 7.0,
+      "index": "ISPU",
+      "path": "/id/kalimantan-tengah/pangkalan-bun",
+      "forecast_file": "forecast/districts/pangkalan-bun.json",
+      "official_source": {
+        "name": "KLHK / BMKG, Indonesia",
+        "url": "https://www.bmkg.go.id"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "sampit",
+      "name": "Sampit",
+      "country_code": "ID",
+      "country": "Indonesia",
+      "admin1": "Kalimantan Tengah",
+      "point": {
+        "lat": -2.532,
+        "lon": 112.95
+      },
+      "timezone": "Asia/Pontianak",
+      "utc_offset_hours": 7.0,
+      "index": "ISPU",
+      "path": "/id/kalimantan-tengah/sampit",
+      "forecast_file": "forecast/districts/sampit.json",
+      "official_source": {
+        "name": "KLHK / BMKG, Indonesia",
+        "url": "https://www.bmkg.go.id"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "balikpapan",
+      "name": "Balikpapan",
+      "country_code": "ID",
+      "country": "Indonesia",
+      "admin1": "Kalimantan Timur",
+      "point": {
+        "lat": -1.2379,
+        "lon": 116.8529
+      },
+      "timezone": "Asia/Makassar",
+      "utc_offset_hours": 8.0,
+      "index": "ISPU",
+      "path": "/id/kalimantan-timur/balikpapan",
+      "forecast_file": "forecast/districts/balikpapan.json",
+      "official_source": {
+        "name": "KLHK / BMKG, Indonesia",
+        "url": "https://www.bmkg.go.id"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "bontang",
+      "name": "Bontang",
+      "country_code": "ID",
+      "country": "Indonesia",
+      "admin1": "Kalimantan Timur",
+      "point": {
+        "lat": 0.132,
+        "lon": 117.5
+      },
+      "timezone": "Asia/Makassar",
+      "utc_offset_hours": 8.0,
+      "index": "ISPU",
+      "path": "/id/kalimantan-timur/bontang",
+      "forecast_file": "forecast/districts/bontang.json",
+      "official_source": {
+        "name": "KLHK / BMKG, Indonesia",
+        "url": "https://www.bmkg.go.id"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "samarinda",
+      "name": "Samarinda",
+      "country_code": "ID",
+      "country": "Indonesia",
+      "admin1": "Kalimantan Timur",
+      "point": {
+        "lat": -0.5022,
+        "lon": 117.1536
+      },
+      "timezone": "Asia/Makassar",
+      "utc_offset_hours": 8.0,
+      "index": "ISPU",
+      "path": "/id/kalimantan-timur/samarinda",
+      "forecast_file": "forecast/districts/samarinda.json",
+      "official_source": {
+        "name": "KLHK / BMKG, Indonesia",
+        "url": "https://www.bmkg.go.id"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "nunukan",
+      "name": "Nunukan",
+      "country_code": "ID",
+      "country": "Indonesia",
+      "admin1": "Kalimantan Utara",
+      "point": {
+        "lat": 4.13,
+        "lon": 117.66
+      },
+      "timezone": "Asia/Makassar",
+      "utc_offset_hours": 8.0,
+      "index": "ISPU",
+      "path": "/id/kalimantan-utara/nunukan",
+      "forecast_file": "forecast/districts/nunukan.json",
+      "official_source": {
+        "name": "KLHK / BMKG, Indonesia",
+        "url": "https://www.bmkg.go.id"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "tanjung-selor",
+      "name": "Tanjung Selor",
+      "country_code": "ID",
+      "country": "Indonesia",
+      "admin1": "Kalimantan Utara",
+      "point": {
+        "lat": 2.84,
+        "lon": 117.36
+      },
+      "timezone": "Asia/Makassar",
+      "utc_offset_hours": 8.0,
+      "index": "ISPU",
+      "path": "/id/kalimantan-utara/tanjung-selor",
+      "forecast_file": "forecast/districts/tanjung-selor.json",
+      "official_source": {
+        "name": "KLHK / BMKG, Indonesia",
+        "url": "https://www.bmkg.go.id"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "tarakan",
+      "name": "Tarakan",
+      "country_code": "ID",
+      "country": "Indonesia",
+      "admin1": "Kalimantan Utara",
+      "point": {
+        "lat": 3.3,
+        "lon": 117.6333
+      },
+      "timezone": "Asia/Makassar",
+      "utc_offset_hours": 8.0,
+      "index": "ISPU",
+      "path": "/id/kalimantan-utara/tarakan",
+      "forecast_file": "forecast/districts/tarakan.json",
+      "official_source": {
+        "name": "KLHK / BMKG, Indonesia",
+        "url": "https://www.bmkg.go.id"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "labuan",
+      "name": "Labuan",
+      "country_code": "MY",
+      "country": "Malaysia",
+      "admin1": "Labuan",
+      "point": {
+        "lat": 5.2831,
+        "lon": 115.2308
+      },
+      "timezone": "Asia/Kuching",
+      "utc_offset_hours": 8.0,
+      "index": "API",
+      "path": "/my/labuan/labuan",
+      "forecast_file": "forecast/districts/labuan.json",
+      "official_source": {
+        "name": "Department of Environment Malaysia (APIMS)",
+        "url": "https://eqms.doe.gov.my/APIMS/main"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "beaufort",
+      "name": "Beaufort",
+      "country_code": "MY",
+      "country": "Malaysia",
+      "admin1": "Sabah",
+      "point": {
+        "lat": 5.347,
+        "lon": 115.745
+      },
+      "timezone": "Asia/Kuching",
+      "utc_offset_hours": 8.0,
+      "index": "API",
+      "path": "/my/sabah/beaufort",
+      "forecast_file": "forecast/districts/beaufort.json",
+      "official_source": {
+        "name": "Department of Environment Malaysia (APIMS)",
+        "url": "https://eqms.doe.gov.my/APIMS/main"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "keningau",
+      "name": "Keningau",
+      "country_code": "MY",
+      "country": "Malaysia",
+      "admin1": "Sabah",
+      "point": {
+        "lat": 5.3378,
+        "lon": 116.1602
+      },
+      "timezone": "Asia/Kuching",
+      "utc_offset_hours": 8.0,
+      "index": "API",
+      "path": "/my/sabah/keningau",
+      "forecast_file": "forecast/districts/keningau.json",
+      "official_source": {
+        "name": "Department of Environment Malaysia (APIMS)",
+        "url": "https://eqms.doe.gov.my/APIMS/main"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "kota-kinabalu",
+      "name": "Kota Kinabalu",
+      "country_code": "MY",
+      "country": "Malaysia",
+      "admin1": "Sabah",
+      "point": {
+        "lat": 5.9804,
+        "lon": 116.0735
+      },
+      "timezone": "Asia/Kuching",
+      "utc_offset_hours": 8.0,
+      "index": "API",
+      "path": "/my/sabah/kota-kinabalu",
+      "forecast_file": "forecast/districts/kota-kinabalu.json",
+      "official_source": {
+        "name": "Department of Environment Malaysia (APIMS)",
+        "url": "https://eqms.doe.gov.my/APIMS/main"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "kudat",
+      "name": "Kudat",
+      "country_code": "MY",
+      "country": "Malaysia",
+      "admin1": "Sabah",
+      "point": {
+        "lat": 6.8833,
+        "lon": 116.8333
+      },
+      "timezone": "Asia/Kuching",
+      "utc_offset_hours": 8.0,
+      "index": "API",
+      "path": "/my/sabah/kudat",
+      "forecast_file": "forecast/districts/kudat.json",
+      "official_source": {
+        "name": "Department of Environment Malaysia (APIMS)",
+        "url": "https://eqms.doe.gov.my/APIMS/main"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "lahad-datu",
+      "name": "Lahad Datu",
+      "country_code": "MY",
+      "country": "Malaysia",
+      "admin1": "Sabah",
+      "point": {
+        "lat": 5.027,
+        "lon": 118.327
+      },
+      "timezone": "Asia/Kuching",
+      "utc_offset_hours": 8.0,
+      "index": "API",
+      "path": "/my/sabah/lahad-datu",
+      "forecast_file": "forecast/districts/lahad-datu.json",
+      "official_source": {
+        "name": "Department of Environment Malaysia (APIMS)",
+        "url": "https://eqms.doe.gov.my/APIMS/main"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "ranau",
+      "name": "Ranau",
+      "country_code": "MY",
+      "country": "Malaysia",
+      "admin1": "Sabah",
+      "point": {
+        "lat": 5.95,
+        "lon": 116.6667
+      },
+      "timezone": "Asia/Kuching",
+      "utc_offset_hours": 8.0,
+      "index": "API",
+      "path": "/my/sabah/ranau",
+      "forecast_file": "forecast/districts/ranau.json",
+      "official_source": {
+        "name": "Department of Environment Malaysia (APIMS)",
+        "url": "https://eqms.doe.gov.my/APIMS/main"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "sandakan",
+      "name": "Sandakan",
+      "country_code": "MY",
+      "country": "Malaysia",
+      "admin1": "Sabah",
+      "point": {
+        "lat": 5.8402,
+        "lon": 118.1179
+      },
+      "timezone": "Asia/Kuching",
+      "utc_offset_hours": 8.0,
+      "index": "API",
+      "path": "/my/sabah/sandakan",
+      "forecast_file": "forecast/districts/sandakan.json",
+      "official_source": {
+        "name": "Department of Environment Malaysia (APIMS)",
+        "url": "https://eqms.doe.gov.my/APIMS/main"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "semporna",
+      "name": "Semporna",
+      "country_code": "MY",
+      "country": "Malaysia",
+      "admin1": "Sabah",
+      "point": {
+        "lat": 4.482,
+        "lon": 118.611
+      },
+      "timezone": "Asia/Kuching",
+      "utc_offset_hours": 8.0,
+      "index": "API",
+      "path": "/my/sabah/semporna",
+      "forecast_file": "forecast/districts/semporna.json",
+      "official_source": {
+        "name": "Department of Environment Malaysia (APIMS)",
+        "url": "https://eqms.doe.gov.my/APIMS/main"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "tawau",
+      "name": "Tawau",
+      "country_code": "MY",
+      "country": "Malaysia",
+      "admin1": "Sabah",
+      "point": {
+        "lat": 4.2448,
+        "lon": 117.8912
+      },
+      "timezone": "Asia/Kuching",
+      "utc_offset_hours": 8.0,
+      "index": "API",
+      "path": "/my/sabah/tawau",
+      "forecast_file": "forecast/districts/tawau.json",
+      "official_source": {
+        "name": "Department of Environment Malaysia (APIMS)",
+        "url": "https://eqms.doe.gov.my/APIMS/main"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "betong-sarawak",
+      "name": "Betong",
+      "country_code": "MY",
+      "country": "Malaysia",
+      "admin1": "Sarawak",
+      "point": {
+        "lat": 1.403,
+        "lon": 111.53
+      },
+      "timezone": "Asia/Kuching",
+      "utc_offset_hours": 8.0,
+      "index": "API",
+      "path": "/my/sarawak/betong-sarawak",
+      "forecast_file": "forecast/districts/betong-sarawak.json",
+      "official_source": {
+        "name": "Department of Environment Malaysia (APIMS)",
+        "url": "https://eqms.doe.gov.my/APIMS/main"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "bintulu",
+      "name": "Bintulu",
+      "country_code": "MY",
+      "country": "Malaysia",
+      "admin1": "Sarawak",
+      "point": {
+        "lat": 3.171,
+        "lon": 113.0417
+      },
+      "timezone": "Asia/Kuching",
+      "utc_offset_hours": 8.0,
+      "index": "API",
+      "path": "/my/sarawak/bintulu",
+      "forecast_file": "forecast/districts/bintulu.json",
+      "official_source": {
+        "name": "Department of Environment Malaysia (APIMS)",
+        "url": "https://eqms.doe.gov.my/APIMS/main"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "kapit",
+      "name": "Kapit",
+      "country_code": "MY",
+      "country": "Malaysia",
+      "admin1": "Sarawak",
+      "point": {
+        "lat": 2.017,
+        "lon": 112.933
+      },
+      "timezone": "Asia/Kuching",
+      "utc_offset_hours": 8.0,
+      "index": "API",
+      "path": "/my/sarawak/kapit",
+      "forecast_file": "forecast/districts/kapit.json",
+      "official_source": {
+        "name": "Department of Environment Malaysia (APIMS)",
+        "url": "https://eqms.doe.gov.my/APIMS/main"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "samarahan",
+      "name": "Kota Samarahan",
+      "country_code": "MY",
+      "country": "Malaysia",
+      "admin1": "Sarawak",
+      "point": {
+        "lat": 1.459,
+        "lon": 110.47
+      },
+      "timezone": "Asia/Kuching",
+      "utc_offset_hours": 8.0,
+      "index": "API",
+      "path": "/my/sarawak/samarahan",
+      "forecast_file": "forecast/districts/samarahan.json",
+      "official_source": {
+        "name": "Department of Environment Malaysia (APIMS)",
+        "url": "https://eqms.doe.gov.my/APIMS/main"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "kuching",
+      "name": "Kuching",
+      "country_code": "MY",
+      "country": "Malaysia",
+      "admin1": "Sarawak",
+      "point": {
+        "lat": 1.5533,
+        "lon": 110.3592
+      },
+      "timezone": "Asia/Kuching",
+      "utc_offset_hours": 8.0,
+      "index": "API",
+      "path": "/my/sarawak/kuching",
+      "forecast_file": "forecast/districts/kuching.json",
+      "official_source": {
+        "name": "Department of Environment Malaysia (APIMS)",
+        "url": "https://eqms.doe.gov.my/APIMS/main"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "lawas",
+      "name": "Lawas",
+      "country_code": "MY",
+      "country": "Malaysia",
+      "admin1": "Sarawak",
+      "point": {
+        "lat": 4.85,
+        "lon": 115.4
+      },
+      "timezone": "Asia/Kuching",
+      "utc_offset_hours": 8.0,
+      "index": "API",
+      "path": "/my/sarawak/lawas",
+      "forecast_file": "forecast/districts/lawas.json",
+      "official_source": {
+        "name": "Department of Environment Malaysia (APIMS)",
+        "url": "https://eqms.doe.gov.my/APIMS/main"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "limbang",
+      "name": "Limbang",
+      "country_code": "MY",
+      "country": "Malaysia",
+      "admin1": "Sarawak",
+      "point": {
+        "lat": 4.75,
+        "lon": 115.0
+      },
+      "timezone": "Asia/Kuching",
+      "utc_offset_hours": 8.0,
+      "index": "API",
+      "path": "/my/sarawak/limbang",
+      "forecast_file": "forecast/districts/limbang.json",
+      "official_source": {
+        "name": "Department of Environment Malaysia (APIMS)",
+        "url": "https://eqms.doe.gov.my/APIMS/main"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "miri",
+      "name": "Miri",
+      "country_code": "MY",
+      "country": "Malaysia",
+      "admin1": "Sarawak",
+      "point": {
+        "lat": 4.3995,
+        "lon": 113.9914
+      },
+      "timezone": "Asia/Kuching",
+      "utc_offset_hours": 8.0,
+      "index": "API",
+      "path": "/my/sarawak/miri",
+      "forecast_file": "forecast/districts/miri.json",
+      "official_source": {
+        "name": "Department of Environment Malaysia (APIMS)",
+        "url": "https://eqms.doe.gov.my/APIMS/main"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "mukah",
+      "name": "Mukah",
+      "country_code": "MY",
+      "country": "Malaysia",
+      "admin1": "Sarawak",
+      "point": {
+        "lat": 2.896,
+        "lon": 112.09
+      },
+      "timezone": "Asia/Kuching",
+      "utc_offset_hours": 8.0,
+      "index": "API",
+      "path": "/my/sarawak/mukah",
+      "forecast_file": "forecast/districts/mukah.json",
+      "official_source": {
+        "name": "Department of Environment Malaysia (APIMS)",
+        "url": "https://eqms.doe.gov.my/APIMS/main"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "sarikei",
+      "name": "Sarikei",
+      "country_code": "MY",
+      "country": "Malaysia",
+      "admin1": "Sarawak",
+      "point": {
+        "lat": 2.128,
+        "lon": 111.52
+      },
+      "timezone": "Asia/Kuching",
+      "utc_offset_hours": 8.0,
+      "index": "API",
+      "path": "/my/sarawak/sarikei",
+      "forecast_file": "forecast/districts/sarikei.json",
+      "official_source": {
+        "name": "Department of Environment Malaysia (APIMS)",
+        "url": "https://eqms.doe.gov.my/APIMS/main"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "serian",
+      "name": "Serian",
+      "country_code": "MY",
+      "country": "Malaysia",
+      "admin1": "Sarawak",
+      "point": {
+        "lat": 1.167,
+        "lon": 110.567
+      },
+      "timezone": "Asia/Kuching",
+      "utc_offset_hours": 8.0,
+      "index": "API",
+      "path": "/my/sarawak/serian",
+      "forecast_file": "forecast/districts/serian.json",
+      "official_source": {
+        "name": "Department of Environment Malaysia (APIMS)",
+        "url": "https://eqms.doe.gov.my/APIMS/main"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "sibu",
+      "name": "Sibu",
+      "country_code": "MY",
+      "country": "Malaysia",
+      "admin1": "Sarawak",
+      "point": {
+        "lat": 2.287,
+        "lon": 111.8305
+      },
+      "timezone": "Asia/Kuching",
+      "utc_offset_hours": 8.0,
+      "index": "API",
+      "path": "/my/sarawak/sibu",
+      "forecast_file": "forecast/districts/sibu.json",
+      "official_source": {
+        "name": "Department of Environment Malaysia (APIMS)",
+        "url": "https://eqms.doe.gov.my/APIMS/main"
+      },
+      "measured_reading": null
+    },
+    {
+      "slug": "sri-aman",
+      "name": "Sri Aman",
+      "country_code": "MY",
+      "country": "Malaysia",
+      "admin1": "Sarawak",
+      "point": {
+        "lat": 1.2372,
+        "lon": 111.463
+      },
+      "timezone": "Asia/Kuching",
+      "utc_offset_hours": 8.0,
+      "index": "API",
+      "path": "/my/sarawak/sri-aman",
+      "forecast_file": "forecast/districts/sri-aman.json",
+      "official_source": {
+        "name": "Department of Environment Malaysia (APIMS)",
+        "url": "https://eqms.doe.gov.my/APIMS/main"
+      },
+      "measured_reading": null
+    }
+  ]
+}

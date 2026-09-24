@@ -1,0 +1,45 @@
+slug,name,country,admin1,lat,lon,timezone,index
+kuching,Kuching,MY,Sarawak,1.5533,110.3592,Asia/Kuching,API
+samarahan,Kota Samarahan,MY,Sarawak,1.4590,110.4700,Asia/Kuching,API
+serian,Serian,MY,Sarawak,1.1670,110.5670,Asia/Kuching,API
+sri-aman,Sri Aman,MY,Sarawak,1.2372,111.4630,Asia/Kuching,API
+betong-sarawak,Betong,MY,Sarawak,1.4030,111.5300,Asia/Kuching,API
+sarikei,Sarikei,MY,Sarawak,2.1280,111.5200,Asia/Kuching,API
+sibu,Sibu,MY,Sarawak,2.2870,111.8305,Asia/Kuching,API
+mukah,Mukah,MY,Sarawak,2.8960,112.0900,Asia/Kuching,API
+kapit,Kapit,MY,Sarawak,2.0170,112.9330,Asia/Kuching,API
+bintulu,Bintulu,MY,Sarawak,3.1710,113.0417,Asia/Kuching,API
+miri,Miri,MY,Sarawak,4.3995,113.9914,Asia/Kuching,API
+limbang,Limbang,MY,Sarawak,4.7500,115.0000,Asia/Kuching,API
+lawas,Lawas,MY,Sarawak,4.8500,115.4000,Asia/Kuching,API
+kota-kinabalu,Kota Kinabalu,MY,Sabah,5.9804,116.0735,Asia/Kuching,API
+ranau,Ranau,MY,Sabah,5.9500,116.6667,Asia/Kuching,API
+kudat,Kudat,MY,Sabah,6.8833,116.8333,Asia/Kuching,API
+keningau,Keningau,MY,Sabah,5.3378,116.1602,Asia/Kuching,API
+beaufort,Beaufort,MY,Sabah,5.3470,115.7450,Asia/Kuching,API
+sandakan,Sandakan,MY,Sabah,5.8402,118.1179,Asia/Kuching,API
+lahad-datu,Lahad Datu,MY,Sabah,5.0270,118.3270,Asia/Kuching,API
+semporna,Semporna,MY,Sabah,4.4820,118.6110,Asia/Kuching,API
+tawau,Tawau,MY,Sabah,4.2448,117.8912,Asia/Kuching,API
+labuan,Labuan,MY,Labuan,5.2831,115.2308,Asia/Kuching,API
+bandar-seri-begawan,Bandar Seri Begawan,BN,Brunei-Muara,4.9031,114.9398,Asia/Brunei,PSI
+tutong,Tutong,BN,Tutong,4.8000,114.6500,Asia/Brunei,PSI
+kuala-belait,Kuala Belait,BN,Belait,4.5824,114.1930,Asia/Brunei,PSI
+seria,Seria,BN,Belait,4.6100,114.3200,Asia/Brunei,PSI
+bangar,Bangar,BN,Temburong,4.7080,115.0730,Asia/Brunei,PSI
+pontianak,Pontianak,ID,Kalimantan Barat,-0.0263,109.3425,Asia/Pontianak,ISPU
+singkawang,Singkawang,ID,Kalimantan Barat,0.9060,108.9850,Asia/Pontianak,ISPU
+ketapang,Ketapang,ID,Kalimantan Barat,-1.8500,109.9800,Asia/Pontianak,ISPU
+sintang,Sintang,ID,Kalimantan Barat,0.0700,111.4900,Asia/Pontianak,ISPU
+palangka-raya,Palangka Raya,ID,Kalimantan Tengah,-2.2100,113.9200,Asia/Pontianak,ISPU
+sampit,Sampit,ID,Kalimantan Tengah,-2.5320,112.9500,Asia/Pontianak,ISPU
+pangkalan-bun,Pangkalan Bun,ID,Kalimantan Tengah,-2.6800,111.6200,Asia/Pontianak,ISPU
+banjarmasin,Banjarmasin,ID,Kalimantan Selatan,-3.3194,114.5906,Asia/Makassar,ISPU
+banjarbaru,Banjarbaru,ID,Kalimantan Selatan,-3.4420,114.8300,Asia/Makassar,ISPU
+kotabaru,Kotabaru,ID,Kalimantan Selatan,-3.2400,116.2500,Asia/Makassar,ISPU
+samarinda,Samarinda,ID,Kalimantan Timur,-0.5022,117.1536,Asia/Makassar,ISPU
+balikpapan,Balikpapan,ID,Kalimantan Timur,-1.2379,116.8529,Asia/Makassar,ISPU
+bontang,Bontang,ID,Kalimantan Timur,0.1320,117.5000,Asia/Makassar,ISPU
+tarakan,Tarakan,ID,Kalimantan Utara,3.3000,117.6333,Asia/Makassar,ISPU
+tanjung-selor,Tanjung Selor,ID,Kalimantan Utara,2.8400,117.3600,Asia/Makassar,ISPU
+nunukan,Nunukan,ID,Kalimantan Utara,4.1300,117.6600,Asia/Makassar,ISPU
