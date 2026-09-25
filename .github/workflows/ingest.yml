@@ -21,6 +21,11 @@ env:
   FIRMS_MAP_KEY: ${{ secrets.FIRMS_MAP_KEY }}
   ADS_API_KEY: ${{ secrets.ADS_API_KEY }}
   CONTACT_EMAIL: ${{ secrets.CONTACT_EMAIL }}
+  # Flight boards stay off until this secret exists. The two variables are only needed if
+  # AeroDataBox's direct subscription uses a different base URL or key header than API.market.
+  AERODATABOX_KEY: ${{ secrets.AERODATABOX_KEY }}
+  AERODATABOX_BASE_URL: ${{ vars.AERODATABOX_BASE_URL }}
+  AERODATABOX_KEY_HEADER: ${{ vars.AERODATABOX_KEY_HEADER }}
 
 jobs:
   ingest:
@@ -56,6 +61,10 @@ jobs:
         continue-on-error: true
         run: python scripts/ingest_cams.py
 
+      - id: flights
+        continue-on-error: true
+        run: python scripts/ingest_flights.py
+
       # GitHub disables scheduled workflows after 60 days without repo
       # activity. One commit per day keeps the schedule alive.
       - name: Keep schedule alive
@@ -71,7 +80,7 @@ jobs:
           fi
 
       - name: Fail the run if any source failed
-        if: steps.firms.outcome == 'failure' || steps.met.outcome == 'failure' || steps.cams.outcome == 'failure'
+        if: steps.firms.outcome == 'failure' || steps.met.outcome == 'failure' || steps.cams.outcome == 'failure' || steps.flights.outcome == 'failure'
         run: |
-          echo "firms=${{ steps.firms.outcome }} met=${{ steps.met.outcome }} cams=${{ steps.cams.outcome }}"
+          echo "firms=${{ steps.firms.outcome }} met=${{ steps.met.outcome }} cams=${{ steps.cams.outcome }} flights=${{ steps.flights.outcome }}"
           exit 1
