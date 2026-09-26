@@ -26,9 +26,10 @@ from datetime import datetime, timezone
 META_KEY = "meta.json"
 
 # How stale a source may get before the site calls it delayed.
-STALE_AFTER_MINUTES = {"firms": 180, "met": 180, "cams": 1800, "flights": 360}   # flights: 4 quiet hours a night
+STALE_AFTER_MINUTES = {"firms": 180, "met": 180, "cams": 1800, "flights": 360, "sesb": 360}   # flights: 4 quiet hours a night
 LABELS = {"firms": "NASA FIRMS hotspots", "met": "MET Norway weather forecast",
-          "cams": "Copernicus CAMS smoke forecast", "flights": "AeroDataBox flight boards"}
+          "cams": "Copernicus CAMS smoke forecast", "flights": "AeroDataBox flight boards",
+          "sesb": "SESB outage notices"}
 
 # Sources that no longer run. Their last entry would otherwise sit in meta.json for
 # ever and the About page would call them delayed. Revive a source by removing it here.

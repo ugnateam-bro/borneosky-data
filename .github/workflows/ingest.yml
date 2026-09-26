@@ -26,6 +26,9 @@ env:
   AERODATABOX_KEY: ${{ secrets.AERODATABOX_KEY }}
   AERODATABOX_BASE_URL: ${{ vars.AERODATABOX_BASE_URL }}
   AERODATABOX_KEY_HEADER: ${{ vars.AERODATABOX_KEY_HEADER }}
+  # Sabah outage notices (SESB's own outage portal) stay off until this repository variable is "on"
+  # (Settings > Secrets and variables > Actions > Variables). Set it to anything else to stop them at once.
+  SESB_NOTICES: ${{ vars.SESB_NOTICES }}
 
 jobs:
   ingest:
@@ -65,6 +68,10 @@ jobs:
         continue-on-error: true
         run: python scripts/ingest_flights.py
 
+      - id: sesb
+        continue-on-error: true
+        run: python scripts/ingest_sesb.py
+
       # GitHub disables scheduled workflows after 60 days without repo
       # activity. One commit per day keeps the schedule alive.
       - name: Keep schedule alive
@@ -80,7 +87,7 @@ jobs:
           fi
 
       - name: Fail the run if any source failed
-        if: steps.firms.outcome == 'failure' || steps.met.outcome == 'failure' || steps.cams.outcome == 'failure' || steps.flights.outcome == 'failure'
+        if: steps.firms.outcome == 'failure' || steps.met.outcome == 'failure' || steps.cams.outcome == 'failure' || steps.flights.outcome == 'failure' || steps.sesb.outcome == 'failure'
         run: |
-          echo "firms=${{ steps.firms.outcome }} met=${{ steps.met.outcome }} cams=${{ steps.cams.outcome }} flights=${{ steps.flights.outcome }}"
+          echo "firms=${{ steps.firms.outcome }} met=${{ steps.met.outcome }} cams=${{ steps.cams.outcome }} flights=${{ steps.flights.outcome }} sesb=${{ steps.sesb.outcome }}"
           exit 1
