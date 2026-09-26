@@ -1,10 +1,10 @@
-# Sarawak outage notices (built, switched off until you say)
+# Sarawak outage notices (switched on 26 Sep 2026)
 
 Power interruptions in Sarawak, read from **Sarawak Energy's own posts on X** (https://x.com/1SarawakEnergy). Its website
 has no list and its SEB Cares alerts need an account, so X is the only place these notices are public, and X's paid API
 is the sanctioned way to read them. The reader (`borneosky/sarawak.py`), its 29 checks and the site's three places for
-the notices are written and tested. Until the repository variable `SARAWAK_NOTICES` is `on`, the hourly step does
-nothing, and until the site's `sarawakNoticesLive` is on, visitors see nothing.
+the notices are written and tested. The repository variable `SARAWAK_NOTICES` was set to `on`, and the site's
+`sarawakNoticesLive` switched on, on 26 Sep 2026. Set the variable to anything else and the hourly step stops at once.
 
 The reasoning, the cost estimate, X's rules and the wording are in the site repository's `docs/outages-notices.md`. This
 note is only about the pipeline.
@@ -53,7 +53,7 @@ note is only about the pipeline.
 X charges US$0.005 per post returned, once per post per UTC day, US$0.01 for the one user lookup, and nothing for an empty
 answer (page read 26 Sep 2026; prices "are subject to change"). The file records posts read per day, and the run prints the
 month's estimate. **A hard cap stops the reading for the day** (`DAILY_POST_CAP`, 150 posts, US$0.75) whatever the
-spending limit at X is; `--force` does not reset it. Set a monthly spending limit at X as well (US$5 is plenty).
+spending limit at X is; `--force` does not reset it. The owner set a monthly spending limit of US$5 at X on 26 Sep 2026.
 
 ## When it goes wrong
 

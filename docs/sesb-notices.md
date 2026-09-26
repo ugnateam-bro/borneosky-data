@@ -1,8 +1,9 @@
-# Sabah outage notices (built, switched off until you say)
+# Sabah outage notices (switched on 26 Sep 2026)
 
 Planned and short-notice power work in Sabah and Labuan, read from **SESB's own outage portal**
 (https://mysesb.com.my/Outage/). The pipeline, its 23 checks and the site's three places for the notices (the Outages page, a count per town on the front page, a card on each town page) are written and tested.
-Until the repository variable `SESB_NOTICES` is `on`, the hourly step does nothing and no file is written.
+The repository variable `SESB_NOTICES` was set to `on` on 26 Sep 2026. Set it to anything else and the hourly step stops at
+once and writes no file.
 
 The reasoning, the alternatives (Ada Karankah, X) and the wording rules are in the site repository's
 `docs/outages-notices.md`. This note is only about the pipeline.
@@ -62,8 +63,8 @@ The reasoning, the alternatives (Ada Karankah, X) and the wording rules are in t
 - We identify ourselves with `BorneoSky/0.1 (+https://borneosky.com; contact)` and never ask more than twice an hour.
 - The files are not a documented interface. SESB's portal shows "Copyright 2021 Sabah Electricity Sdn. Bhd." and no
   terms for reuse; `mysesb.com.my` has no `robots.txt`. The notices are SESB's text: the site restates the facts
-  and links to the portal. **The letter to SESB is still to be sent** (what we show, how often we read, attribution,
-  and a request for an official feed). Keep the switch off until the owner decides to go ahead.
+  and links to the portal. **The owner decided on 26 Sep 2026 that no letter is needed** (the data was obtained
+  legally). The switch stays as the way to stop at once if SESB ever asks us to.
 - `data.borneosky.com` keeps its `robots.txt` disallowing everything, and the notices are covered by the Terms of Use
   ban on reuse like every other file there.
 
