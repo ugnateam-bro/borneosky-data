@@ -72,6 +72,16 @@ jobs:
         continue-on-error: true
         run: python scripts/ingest_sesb.py
 
+      # Sarawak Energy's notices are read from its posts on X, which costs credits, so this step is off until the
+      # repository variable SARAWAK_NOTICES is "on" (set anything else to stop it at once). The Bearer Token is a secret
+      # (Settings > Secrets and variables > Actions > Secrets > X_BEARER_TOKEN) and is given to this step only.
+      - id: sarawak
+        continue-on-error: true
+        env:
+          SARAWAK_NOTICES: ${{ vars.SARAWAK_NOTICES }}
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+        run: python scripts/ingest_sarawak.py
+
       # GitHub disables scheduled workflows after 60 days without repo
       # activity. One commit per day keeps the schedule alive.
       - name: Keep schedule alive
@@ -87,7 +97,7 @@ jobs:
           fi
 
       - name: Fail the run if any source failed
-        if: steps.firms.outcome == 'failure' || steps.met.outcome == 'failure' || steps.cams.outcome == 'failure' || steps.flights.outcome == 'failure' || steps.sesb.outcome == 'failure'
+        if: steps.firms.outcome == 'failure' || steps.met.outcome == 'failure' || steps.cams.outcome == 'failure' || steps.flights.outcome == 'failure' || steps.sesb.outcome == 'failure' || steps.sarawak.outcome == 'failure'
         run: |
-          echo "firms=${{ steps.firms.outcome }} met=${{ steps.met.outcome }} cams=${{ steps.cams.outcome }} flights=${{ steps.flights.outcome }} sesb=${{ steps.sesb.outcome }}"
+          echo "firms=${{ steps.firms.outcome }} met=${{ steps.met.outcome }} cams=${{ steps.cams.outcome }} flights=${{ steps.flights.outcome }} sesb=${{ steps.sesb.outcome }} sarawak=${{ steps.sarawak.outcome }}"
           exit 1
