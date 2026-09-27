@@ -82,6 +82,14 @@ jobs:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
         run: python scripts/ingest_sarawak.py
 
+      # Explore: weather forecasts for the places people visit (data/places.json). Off until the repository variable
+      # EXPLORE_PLACES is "on", so this step changes nothing while Explore is switched off on the site.
+      - id: places
+        continue-on-error: true
+        env:
+          EXPLORE_PLACES: ${{ vars.EXPLORE_PLACES }}
+        run: python scripts/ingest_places.py
+
       # GitHub disables scheduled workflows after 60 days without repo
       # activity. One commit per day keeps the schedule alive.
       - name: Keep schedule alive
@@ -97,7 +105,7 @@ jobs:
           fi
 
       - name: Fail the run if any source failed
-        if: steps.firms.outcome == 'failure' || steps.met.outcome == 'failure' || steps.cams.outcome == 'failure' || steps.flights.outcome == 'failure' || steps.sesb.outcome == 'failure' || steps.sarawak.outcome == 'failure'
+        if: steps.firms.outcome == 'failure' || steps.met.outcome == 'failure' || steps.cams.outcome == 'failure' || steps.flights.outcome == 'failure' || steps.sesb.outcome == 'failure' || steps.sarawak.outcome == 'failure' || steps.places.outcome == 'failure'
         run: |
-          echo "firms=${{ steps.firms.outcome }} met=${{ steps.met.outcome }} cams=${{ steps.cams.outcome }} flights=${{ steps.flights.outcome }} sesb=${{ steps.sesb.outcome }} sarawak=${{ steps.sarawak.outcome }}"
+          echo "firms=${{ steps.firms.outcome }} met=${{ steps.met.outcome }} cams=${{ steps.cams.outcome }} flights=${{ steps.flights.outcome }} sesb=${{ steps.sesb.outcome }} sarawak=${{ steps.sarawak.outcome }} places=${{ steps.places.outcome }}"
           exit 1
