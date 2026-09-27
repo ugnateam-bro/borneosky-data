@@ -52,7 +52,7 @@ def forecast(hourly_rain=lambda loc: 0.0, six_rain=lambda loc: 0.0, hourly_hours
 
 def check_place_list_is_valid():
     assert places.check_list() == [], places.check_list()
-    assert len(places.places()) == 20
+    assert len(places.places()) >= 20
 
 
 def check_place_list_catches_mistakes():
@@ -176,12 +176,13 @@ class FakeSession:
 
 
 def check_run_writes_index_and_respects_expires():
+    N = len(places.places())
     store = {}
     put = lambda key, obj: store.__setitem__(key, obj)
     get = lambda key: store.get(key)
     s = FakeSession()
     res = places.run(put, get, s, now=NOW)
-    assert s.calls == 20 and len(res["updated"]) == 20 and res["places"] == 20
+    assert s.calls == N and len(res["updated"]) == N and res["places"] == N
     idx = store[places.INDEX_KEY]
     kin = idx["places"]["kinabalu-park"]
     assert kin["days"][0]["date"] == "2026-09-27" and kin["days"][0]["sunrise"] and kin["best"]
@@ -189,21 +190,22 @@ def check_run_writes_index_and_respects_expires():
     # Before Expires nothing is fetched, but the file is still written.
     s2 = FakeSession()
     res = places.run(put, get, s2, now=NOW + timedelta(minutes=10))
-    assert s2.calls == 0 and len(res["not_due"]) == 20 and res["places"] == 20
+    assert s2.calls == 0 and len(res["not_due"]) == N and res["places"] == N
     # "Not modified" keeps the saved days; a day later, yesterday drops out of the file.
     s3 = FakeSession(status=304)
     res = places.run(put, get, s3, now=NOW + timedelta(days=1, hours=2))
-    assert len(res["not_modified"]) == 20
+    assert len(res["not_modified"]) == N
     assert store[places.INDEX_KEY]["places"]["bako"]["days"][0]["date"] == "2026-09-28"
 
 
 def check_failed_place_keeps_its_last_days():
+    N = len(places.places())
     store = {}
     put = lambda key, obj: store.__setitem__(key, obj)
     get = lambda key: store.get(key)
     places.run(put, get, FakeSession(), now=NOW)
     res = places.run(put, get, FakeSession(status=500), now=NOW + timedelta(hours=2))
-    assert len(res["failed"]) == 20 and store[places.INDEX_KEY]["places"]["bako"]["days"]
+    assert len(res["failed"]) == N and store[places.INDEX_KEY]["places"]["bako"]["days"]
 
 
 CHECKS = [v for k, v in dict(globals()).items() if k.startswith("check_")]

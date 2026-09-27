@@ -43,7 +43,7 @@ MORNING = (8, 14)             # local hours [start, end)
 AFTERNOON = (14, 20)
 LABEL = "Weather forecast from a weather model, not a measurement. The best day is a ranking of that forecast."
 SMOKE_LABEL = "Smoke forecast from the CAMS global atmospheric model: modelled values, not measurements."
-KINDS = ("sea", "mountain", "forest", "town")
+KINDS = ("sea", "mountain", "forest", "town", "culture")
 REGIONS = {"sabah": "MY", "sarawak": "MY", "labuan": "MY", "brunei": "BN", "kalimantan": "ID"}
 # Airports on our flight boards (borneosky/flights.py). A place links to a board only for one of these.
 BOARD_AIRPORTS = ("KCH", "MYY", "SBW", "BTU", "BKI", "TWU", "SDK", "LBU", "BWN")

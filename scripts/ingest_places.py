@@ -60,8 +60,8 @@ def main() -> None:
         from borneosky import r2
 
         def put_json(key, obj):
-            try:
-                r2.put_json(key, obj, cache_seconds=900)
+            try:  # the index grows with the list of places, so it is stored compressed (browsers unpack it themselves)
+                r2.put_json(key, obj, cache_seconds=900, gzipped=key == places.INDEX_KEY)
             except (ClientError, BotoCoreError) as e:
                 sys.exit(f"R2 upload of {key} failed: {type(e).__name__}. Check the R2 keys.")
 
