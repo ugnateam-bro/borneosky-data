@@ -312,7 +312,7 @@ def check_list(place_list: list[dict] | None = None) -> list[str]:
         if town["timezone"] != p.get("timezone"):
             problems.append(f"{s}: time zone differs from its town's")
         km = geo.haversine_km(p["point"]["lat"], p["point"]["lon"], town["point"]["lat"], town["point"]["lon"])
-        if km > 200:
+        if km > 260:  # a few deep-interior parks (Betung Kerihun, Kayan Mentarang) are far from any registry town
             problems.append(f"{s}: {km:.0f} km from its town")
         lat, lon = p["point"]["lat"], p["point"]["lon"]
         if not (-4.5 <= lat <= 7.5 and 108.5 <= lon <= 119.5):
