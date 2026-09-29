@@ -59,6 +59,8 @@ its "in development" message. Nothing needs to be deployed when the key arrives.
    - the footer credit ("Flight data: AeroDataBox");
    - Flights title and description (name the airports; leave Kalimantan out until it is added).
    All in three languages, English prevailing.
+   - set `"flightsLive": true` in the site's `src/lib/features.json`: until then `/flights` is `noindex` and left
+     out of the sitemap (since 29 Sep 2026, so search engines don't index an empty page).
 7. Watch `meta.json` (the `flights` row) and `flights/_usage.json` for the first days.
 
 ## Later
