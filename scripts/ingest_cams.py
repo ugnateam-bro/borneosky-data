@@ -57,7 +57,10 @@ def main() -> None:
 
     res = cams.run(put_json, get_json, force=args.force or args.dry_run)
 
-    status.detail(status=res["status"], run_utc=res.get("run_utc"))
+    wind = res.get("wind") or {}
+    status.detail(status=res["status"], run_utc=res.get("run_utc"), wind=wind.get("status"))
+    if wind:   # an extra: never changes whether this run counts as failed
+        print(f"  wind: {wind['status']}" + (f" ({wind['error']})" if wind.get("error") else ""))
     if res["status"] == "failed":
         status.soft_fail(res["error"])
     if res["status"] == "up_to_date":
