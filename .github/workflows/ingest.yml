@@ -90,6 +90,14 @@ jobs:
           EXPLORE_PLACES: ${{ vars.EXPLORE_PLACES }}
         run: python scripts/ingest_places.py
 
+      # Weather warnings: MetMalaysia (Sarawak, Sabah, Labuan) and BMKG (Kalimantan) in their own words. Off until the
+      # repository variable WARNINGS is "on" (anything else stops it at once). Needs no key.
+      - id: warnings
+        continue-on-error: true
+        env:
+          WARNINGS: ${{ vars.WARNINGS }}
+        run: python scripts/ingest_warnings.py
+
       # GitHub disables scheduled workflows after 60 days without repo
       # activity. One commit per day keeps the schedule alive.
       - name: Keep schedule alive
@@ -105,7 +113,7 @@ jobs:
           fi
 
       - name: Fail the run if any source failed
-        if: steps.firms.outcome == 'failure' || steps.met.outcome == 'failure' || steps.cams.outcome == 'failure' || steps.flights.outcome == 'failure' || steps.sesb.outcome == 'failure' || steps.sarawak.outcome == 'failure' || steps.places.outcome == 'failure'
+        if: steps.firms.outcome == 'failure' || steps.met.outcome == 'failure' || steps.cams.outcome == 'failure' || steps.flights.outcome == 'failure' || steps.sesb.outcome == 'failure' || steps.sarawak.outcome == 'failure' || steps.places.outcome == 'failure' || steps.warnings.outcome == 'failure'
         run: |
-          echo "firms=${{ steps.firms.outcome }} met=${{ steps.met.outcome }} cams=${{ steps.cams.outcome }} flights=${{ steps.flights.outcome }} sesb=${{ steps.sesb.outcome }} sarawak=${{ steps.sarawak.outcome }} places=${{ steps.places.outcome }}"
+          echo "firms=${{ steps.firms.outcome }} met=${{ steps.met.outcome }} cams=${{ steps.cams.outcome }} flights=${{ steps.flights.outcome }} sesb=${{ steps.sesb.outcome }} sarawak=${{ steps.sarawak.outcome }} places=${{ steps.places.outcome }} warnings=${{ steps.warnings.outcome }}"
           exit 1
