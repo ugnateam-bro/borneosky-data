@@ -1,0 +1,11 @@
+# Every hour at :40, after the hourly ingest (:23) has had time to publish.
+[Unit]
+Description=BorneoSky history recorder, hourly
+
+[Timer]
+OnCalendar=*:40
+RandomizedDelaySec=60
+Persistent=true
+
+[Install]
+WantedBy=timers.target

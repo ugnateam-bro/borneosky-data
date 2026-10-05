@@ -1,0 +1,24 @@
+# One consistent copy of the history database to a PRIVATE R2 bucket (scripts/backup_history.py). Needs the R2_* values in
+# /etc/borneosky/history.env (a key for the history bucket only).
+[Unit]
+Description=BorneoSky history backup to R2
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=borneo
+Group=borneo
+WorkingDirectory=/opt/borneosky-data
+EnvironmentFile=-/etc/borneosky/history.env
+StateDirectory=borneosky
+ExecStart=/opt/borneosky-data/.venv/bin/python scripts/backup_history.py
+TimeoutStartSec=1800
+Nice=15
+CPUQuota=50%
+MemoryMax=400M
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/borneosky

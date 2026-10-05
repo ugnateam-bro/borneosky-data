@@ -1,0 +1,24 @@
+# Reads the published data files and appends what is new to the history database (scripts/record_history.py).
+# Runs as the unprivileged user "borneo", capped so it can never starve the other services on the droplet.
+[Unit]
+Description=BorneoSky history recorder
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=borneo
+Group=borneo
+WorkingDirectory=/opt/borneosky-data
+EnvironmentFile=-/etc/borneosky/history.env
+StateDirectory=borneosky
+ExecStart=/opt/borneosky-data/.venv/bin/python scripts/record_history.py
+TimeoutStartSec=300
+Nice=10
+CPUQuota=50%
+MemoryMax=400M
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/borneosky
