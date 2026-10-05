@@ -140,28 +140,55 @@ routes = {W.MM_URL: MMOK, W.BMKG_RSS.format(lang="en"): BMOK,
           "https://www.bmkg.go.id/alerts/nowcast/en/CKB1_alert.xml": cap("Heavy Rain", "Severe"),
           "https://www.bmkg.go.id/alerts/nowcast/id/CKB1_alert.xml": cap("Hujan Lebat", "Severe", "id")}
 store = {}
-res = W.run(lambda k, o: store.__setitem__(k, o), store.get, Session(routes), NOW)
+res = W.run(lambda k, o: store.__setitem__(k, o), store.get, Session(routes), NOW, bmkg=True)
 out = store[W.OUT_KEY]
 ok(res["count"] == 4 and res["urgent"] == 2 and not res["errors"], "a full run: four warnings, two urgent")
 ok([w["urgent"] for w in out["warnings"]] == [True, True, False, False], "urgent warnings are listed first")
 ok(out["sources"]["metmalaysia"]["ok"] and out["sources"]["bmkg"]["ok"] and out["schema"] == 1, "both sources are recorded as read")
 
 del routes[W.BMKG_RSS.format(lang="en")]            # BMKG down: the fake answers 404
-res2 = W.run(lambda k, o: store.__setitem__(k, o), store.get, Session(routes), NOW)
+res2 = W.run(lambda k, o: store.__setitem__(k, o), store.get, Session(routes), NOW, bmkg=True)
 out2 = store[W.OUT_KEY]
 ok(res2["errors"].keys() == {"bmkg"} and any(w["source"] == "bmkg" for w in out2["warnings"]), "if BMKG cannot be read its earlier warnings stay until they end, and the run says so")
 ok(out2["sources"]["bmkg"]["ok"] is False and out2["sources"]["metmalaysia"]["ok"], "the file records which source failed")
 
 late = datetime(2026, 11, 21, 6, 0, tzinfo=timezone.utc)
-res3 = W.run(lambda k, o: store.__setitem__(k, o), store.get, Session(routes), late)
+res3 = W.run(lambda k, o: store.__setitem__(k, o), store.get, Session(routes), late, bmkg=True)
 ok(not any(w["source"] == "bmkg" for w in store[W.OUT_KEY]["warnings"]), "kept warnings are dropped once they have ended")
 
 before = json.dumps(store[W.OUT_KEY])
 try:
-    W.run(lambda k, o: store.__setitem__(k, o), store.get, Session({}), NOW)
+    W.run(lambda k, o: store.__setitem__(k, o), store.get, Session({}), NOW, bmkg=True)
     ok(False, "both agencies failing must raise")
 except W.WarningsError:
     ok(json.dumps(store[W.OUT_KEY]) == before, "both agencies failing raises and writes nothing (R2 keeps the last good file)")
+
+# BMKG is off by default (5 Oct 2026): it is not asked for, and warnings it gave earlier are not carried over.
+class Spy(Session):
+    def __init__(self, routes):
+        super().__init__(routes)
+        self.urls = []
+
+    def get(self, url, **kw):
+        self.urls.append(url)
+        return super().get(url, **kw)
+
+
+full = {}
+W.run(lambda k, o: full.__setitem__(k, o), full.get, Session(routes_all := {W.MM_URL: MMOK, W.BMKG_RSS.format(lang="en"): BMOK,
+      "https://www.bmkg.go.id/alerts/nowcast/en/CKB1_alert.xml": cap("Heavy Rain", "Severe"),
+      "https://www.bmkg.go.id/alerts/nowcast/id/CKB1_alert.xml": cap("Hujan Lebat", "Severe", "id")}), NOW, bmkg=True)
+ok(any(w["source"] == "bmkg" for w in full[W.OUT_KEY]["warnings"]), "(setup) a file that already holds a BMKG warning")
+spy = Spy(routes_all)
+res4 = W.run(lambda k, o: full.__setitem__(k, o), full.get, spy, NOW)
+ok(not any("bmkg" in u for u in spy.urls), "by default no BMKG address is requested at all")
+ok("bmkg" not in full[W.OUT_KEY]["sources"] and not any(w["source"] == "bmkg" for w in full[W.OUT_KEY]["warnings"]), "by default the file has no BMKG source and drops BMKG warnings written earlier")
+ok(res4["count"] == 3 and not res4["errors"], "by default only the MetMalaysia warnings remain")
+try:
+    W.run(lambda k, o: full.__setitem__(k, o), full.get, Session({}), NOW)
+    ok(False, "MetMalaysia failing alone must raise now that it is the only agency")
+except W.WarningsError:
+    ok(True, "MetMalaysia failing alone raises and writes nothing")
 
 # Every town in AREAS exists in the registry, in the right state.
 admin = {t["slug"]: t["admin1"] for t in REG}

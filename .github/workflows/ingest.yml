@@ -90,12 +90,14 @@ jobs:
           EXPLORE_PLACES: ${{ vars.EXPLORE_PLACES }}
         run: python scripts/ingest_places.py
 
-      # Weather warnings: MetMalaysia (Sarawak, Sabah, Labuan) and BMKG (Kalimantan) in their own words. Off until the
-      # repository variable WARNINGS is "on" (anything else stops it at once). Needs no key.
+      # Weather warnings: MetMalaysia (Sarawak, Sabah, Labuan) in its own words. Off until the repository variable WARNINGS is
+      # "on" (anything else stops it at once). Needs no key. BMKG (Kalimantan) is OFF since 5 Oct 2026 and stays off unless the
+      # variable BMKG_WARNINGS is "on" (BMKG wants written permission for commercial use: docs/warnings.md).
       - id: warnings
         continue-on-error: true
         env:
           WARNINGS: ${{ vars.WARNINGS }}
+          BMKG_WARNINGS: ${{ vars.BMKG_WARNINGS }}
         run: python scripts/ingest_warnings.py
 
       # GitHub disables scheduled workflows after 60 days without repo

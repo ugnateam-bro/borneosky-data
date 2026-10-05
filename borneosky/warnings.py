@@ -1,4 +1,8 @@
-"""Weather warnings → R2 (warnings/current.json), from the two agencies' own open feeds.
+"""Weather warnings → R2 (warnings/current.json), from the agencies' own open feeds.
+
+  BMKG IS OFF (5 Oct 2026): run(bmkg=False) is the default and scripts/ingest_warnings.py turns it on only when the repository
+  variable BMKG_WARNINGS is "on". BMKG's Terms of Use want written permission for commercial use and machine access through its
+  official API (docs/warnings.md, "BMKG: switched off").
 
   MetMalaysia  https://api.data.gov.my/weather/warning/     JSON, no key, Malaysia's open data (CC BY 4.0).
                Sarawak, Sabah and Labuan: thunderstorms, continuous rain, strong wind and rough seas, tropical cyclones.
@@ -343,13 +347,16 @@ def fetch_bmkg(session, registry, now) -> list[dict]:
     return out
 
 
-def run(put_json, get_json, session, now: datetime | None = None) -> dict:
+def run(put_json, get_json, session, now: datetime | None = None, bmkg: bool = False) -> dict:
+    """bmkg=False (the default) means BMKG is not read at all and none of its earlier warnings are carried over: BMKG's Terms of
+    Use (checked 5 Oct 2026) ask for written permission for commercial use and for access through its official API."""
     now = now or datetime.now(timezone.utc)
     registry = towns_registry()
     prev = get_json(OUT_KEY)
     prev_ok = isinstance(prev, dict) and prev.get("schema") == SCHEMA and isinstance(prev.get("warnings"), list)
     sources, warnings, errors = {}, [], {}
-    for name, fn in (("metmalaysia", fetch_metmalaysia), ("bmkg", fetch_bmkg)):
+    agencies = (("metmalaysia", fetch_metmalaysia),) + ((("bmkg", fetch_bmkg),) if bmkg else ())
+    for name, fn in agencies:
         try:
             got = fn(session, registry, now)
             sources[name] = {"ok": True, "checked_utc": _iso(now), "count": len(got)}
@@ -361,7 +368,7 @@ def run(put_json, get_json, session, now: datetime | None = None) -> dict:
             prev_src = (prev.get("sources", {}).get(name, {}) if prev_ok else {})
             sources[name] = {"ok": False, "checked_utc": prev_src.get("checked_utc"), "count": len(kept), "error": errors[name]}
             warnings += kept
-    if len(errors) == 2:
+    if len(errors) == len(agencies):
         raise WarningsError("; ".join(f"{k}: {v}" for k, v in errors.items()))
     warnings.sort(key=lambda w: (not w["urgent"], -LEVELS.index(w["level"]), w["valid_to"], w["id"]))
     out = {"schema": SCHEMA, "generated_utc": _iso(now), "sources": sources, "warnings": warnings}

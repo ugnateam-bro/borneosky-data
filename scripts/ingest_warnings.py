@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Weather warnings (MetMalaysia for Sarawak, Sabah and Labuan; BMKG for Kalimantan) → R2 (warnings/current.json).
+Weather warnings (MetMalaysia for Sarawak, Sabah and Labuan; BMKG for Kalimantan only if BMKG_WARNINGS is "on", which it is not) → R2 (warnings/current.json).
 
 Usage:
-  python scripts/ingest_warnings.py            read both agencies and upload the file (only when WARNINGS is "on")
+  python scripts/ingest_warnings.py            read MetMalaysia (and BMKG only if BMKG_WARNINGS is "on") and upload the file (only when WARNINGS is "on")
   python scripts/ingest_warnings.py --dry-run  the same, but write to ./out/ only; works whether or not it is on
 
 Does nothing until the repository variable WARNINGS is "on" (Settings > Secrets and variables > Actions > Variables), so
@@ -57,7 +57,7 @@ def main() -> None:
     session = requests.Session()
     session.headers["User-Agent"] = user_agent()
     try:
-        res = warnings.run(put_json, get_json, session)
+        res = warnings.run(put_json, get_json, session, bmkg=bmkg_enabled())
     except warnings.WarningsError as e:
         sys.exit(f"Weather warnings: {e}")
 
@@ -69,6 +69,11 @@ def main() -> None:
     for name, err in res["errors"].items():
         print(f"  {name} could not be read: {err}")
         status.soft_fail(f"{name} could not be read: {err}")
+
+
+def bmkg_enabled() -> bool:
+    """BMKG is read only when the repository variable BMKG_WARNINGS is "on" (off since 5 Oct 2026, see borneosky/warnings.py)."""
+    return os.environ.get("BMKG_WARNINGS", "").strip().lower() == "on"
 
 
 def enabled() -> bool:

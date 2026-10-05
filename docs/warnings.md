@@ -1,4 +1,19 @@
-# Weather warnings (MetMalaysia and BMKG)
+# Weather warnings (MetMalaysia; BMKG switched off)
+
+## BMKG: switched off on 5 October 2026
+
+The owner asked for it after BMKG's Terms of Use (www.bmkg.go.id/ketentuan-penggunaan, read 5 Oct 2026) turned out to be stricter than the
+feed's own "public domain" note: repackaging, integration into third-party applications or commercial use needs BMKG's written permission
+(section 9.3), and machine access must go through the official API (arranged through the Legal, Public Relations and Cooperation Bureau).
+
+- `warnings.run(..., bmkg=False)` is the default: BMKG is not requested and BMKG warnings left in the file are dropped. The ingest script turns it on
+  only when the repository variable **`BMKG_WARNINGS` is "on"** (it is not set). The workflow passes the variable.
+- The site hides BMKG separately (`bmkgLive` in the site repository, `docs/warnings-flood.md`), and its Terms and Privacy say MetMalaysia only.
+- Permission letter (English, unsent): `docs/letters/letter-indonesia-bmkg.md` in the site repository. **Switch it back on only with BMKG's
+  written permission and its official channel** (which may mean rewriting `fetch_bmkg` for the API): set `BMKG_WARNINGS` to `on` here, and `bmkgLive` to
+  `true` in the site's `features.json`, in the same release.
+- Nothing from BMKG is kept: the file only ever held what was in force, and the next run overwrites it.
+
 
 `borneosky/warnings.py` and `scripts/ingest_warnings.py` write one small file, `warnings/current.json`, from the agencies' own
 open feeds. Decided and built 3 Oct 2026; the site side is described in the site repo's `docs/warnings-flood.md`.
@@ -8,7 +23,7 @@ open feeds. Decided and built 3 Oct 2026; the site side is described in the site
 | Agency | Feed | Covers | Terms |
 | --- | --- | --- | --- |
 | MetMalaysia | `https://api.data.gov.my/weather/warning/` (JSON; the address without the final slash redirects) | Sarawak, Sabah, Labuan: thunderstorms, continuous rain, strong wind and rough seas, tropical cyclones (earthquakes are left out) | Malaysia's open data, CC BY 4.0, no key; credit MetMalaysia |
-| BMKG | `https://www.bmkg.go.id/alerts/nowcast/en` (RSS) and one CAP file per alert (`/en/` or `/id/`) | The five Kalimantan provinces | Credit BMKG; 60 requests a minute per IP (we make about 10 an hour) |
+| BMKG (**OFF since 5 Oct 2026**, see above) | `https://www.bmkg.go.id/alerts/nowcast/en` (RSS) and one CAP file per alert (`/en/` or `/id/`) | The five Kalimantan provinces | Terms of Use: written permission for commercial use, official API for machine access; credit "Sumber: BMKG" |
 
 ## The file
 
